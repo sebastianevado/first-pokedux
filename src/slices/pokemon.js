@@ -4,6 +4,7 @@ import { setError, toggleLoading } from './ui';
 
 const initialState = {
   list: [],
+  details: [],
 };
 
 export const fetchPokemons = createAsyncThunk(
@@ -24,6 +25,8 @@ export const fetchPokemons = createAsyncThunk(
   }
 );
 
+
+
 export const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
@@ -39,10 +42,13 @@ export const pokemonSlice = createSlice({
         state.list[currentPokemonIndex].isFavorite =
           !state.list[currentPokemonIndex].isFavorite;
       }
+    },
+    setDetails: (state, action) => {
+      state.details = action.payload;
     }
   }
 });
 
-export const { setPokemon, setFavorite } = pokemonSlice.actions;
+export const { setPokemon, setFavorite, setDetails } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
